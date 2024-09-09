@@ -3,7 +3,7 @@
 # Language-Conditioned Affordance-Pose Detection in 3D Point Clouds
 
 [![Conference](https://img.shields.io/badge/ICRA-2024-FF0B0B.svg)](https://2024.ieee-icra.org/)
-[![Paper](https://img.shields.io/badge/Paper-arxiv.2303.02401-0009F6.svg)](https://ieeexplore.ieee.org/abstract/document/10610008/)
+[![Paper](https://img.shields.io/badge/Paper-arxiv.2303.02401-0009F6.svg)](https://arxiv.org/abs/2309.10911)
 
 Official code for the ICRA 2024 paper "Language-Conditioned Affordance-Pose Detection in 3D Point Clouds".
 
