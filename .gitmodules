@@ -1,0 +1,3 @@
+[submodule "pytorchse3"]
+	path = pytorchse3
+	url = https://github.com/eigenvivek/pytorchse3.git
