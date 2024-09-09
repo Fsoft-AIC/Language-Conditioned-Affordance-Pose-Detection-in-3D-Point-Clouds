@@ -1,4 +1,5 @@
 <div align="center">
+
 # Language-Conditioned Affordance-Pose Detection in 3D Point Clouds
 
 [![Conference](https://img.shields.io/badge/ICRA-2024-FF0B0B.svg)](https://2024.ieee-icra.org/)
@@ -7,7 +8,6 @@
 Official code for the ICRA 2024 paper "Language-Conditioned Affordance-Pose Detection in 3D Point Clouds".
 
 <img src="./assets/intro.png" width="600">
-
 We address the task of language-driven affordance-pose detection in 3D point clouds. Our method simultaneously detect open-vocabulary affordances and
 generate affordance-specific 6-DoF poses.
 
