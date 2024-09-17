@@ -37,7 +37,7 @@ model = dict(
 
 training_cfg = dict(
     model=model,
-    batch_size=2,
+    batch_size=32,
     epoch=200,
     gpu='0',
     workflow=dict(

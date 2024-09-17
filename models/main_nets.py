@@ -128,6 +128,7 @@ class DetectionDiffusion(nn.Module):
             eps1 = eps[:n_sample]
             eps2 = eps[n_sample:]
             eps = (1 + guide_w) * eps1 - guide_w * eps2
+            eps = torch.clamp(eps, -1.0, 1.0)
             
             g_i = g_i[:n_sample]
             g_i = self.oneover_sqrta[i] * (g_i - eps * self.mab_over_sqrtmab[i]) + self.sqrt_beta_t[i] * z
