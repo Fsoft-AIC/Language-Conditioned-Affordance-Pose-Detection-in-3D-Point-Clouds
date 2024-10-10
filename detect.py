@@ -7,7 +7,7 @@ import pickle
 from tqdm import tqdm
 
 
-GUIDE_W = 0.2
+GUIDE_W = 0.5
 DEVICE=torch.device('cuda')
 
 

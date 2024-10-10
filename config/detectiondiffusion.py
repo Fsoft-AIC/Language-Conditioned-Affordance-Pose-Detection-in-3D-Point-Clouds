@@ -11,18 +11,20 @@ try:
 except:
     print('Logging Dir is already existed!')
 
-scheduler = dict(
-    type='lr_lambda',
-    lr_lambda=PN2_Scheduler(init_lr=0.001, step=20,
-                            decay_rate=0.5, min_lr=1e-5)
-)
+# scheduler = dict(
+#     type='lr_lambda',
+#     lr_lambda=PN2_Scheduler(init_lr=0.001, step=20,
+#                             decay_rate=0.5, min_lr=1e-5)
+# )
+
+scheduler = None
 
 optimizer = dict(
     type='adam',
     lr=1e-3,
     betas=(0.9, 0.999),
     eps=1e-08,
-    weight_decay=1e-4,
+    weight_decay=1e-5,
 )
 
 model = dict(
@@ -31,7 +33,7 @@ model = dict(
     background_text='none',
     betas=[1e-4, 0.02],
     n_T=1000,
-    drop_prob=0.05,
+    drop_prob=0.1,
     weights_init='default_init',
 )
 

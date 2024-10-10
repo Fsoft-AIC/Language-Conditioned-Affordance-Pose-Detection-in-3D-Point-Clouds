@@ -50,7 +50,7 @@ def pose_eval(gt_poses, pred_poses):
             
             g = gt_poses[id][affordance][:, np.newaxis, :]
             g_pred = pred_poses[id][affordance]
-            l1_distances = np.sum(np.abs(g - g_pred), axis=2)
-            min_distance = np.min(l1_distances)
+            l2_distances = np.sqrt(np.sum((g-g_pred)**2,axis=2))
+            min_distance = np.min(l2_distances)
             all_min_dist.append(min_distance)
     return np.mean(np.array(all_min_dist)), np.mean(np.array(all_rate))
