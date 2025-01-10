@@ -9,8 +9,7 @@ Official code for the ICRA 2024 paper "Language-Conditioned Affordance-Pose Dete
 
 <img src="./assets/intro.png" width="600">
 
-We address the task of language-driven affordance-pose detection in 3D point clouds. Our method simultaneously detect open-vocabulary affordances and
-generate affordance-specific 6-DoF poses.
+We address the task of language-driven affordance-pose detection in 3D point clouds. Our method simultaneously detect open-vocabulary affordances and generate affordance-specific 6-DoF poses.
 
 ![image](./assets/method.png)
 
@@ -39,13 +38,13 @@ Current framework supports training on a single GPU. Followings are the steps fo
 
 		python3 train.py --config ./config/detectiondiffusion.py
 
-## 4. Open-Vocabulary Testing
+## 4. Testing
 Executing the following command for testing of your trained model:
 
     python3 detect.py --config <your configuration file> --checkpoint <your  trained model checkpoint> --test_data <test data in the 3DAP dataset>
 
 Note that we current generate 2000 poses for each affordance-object pair.
-The guidance scale is currently set to 0.5. Feel free to change these hyperparameters according to your preference.
+The guidance scale is currently set to 0.2. Feel free to change these hyperparameters according to your preference.
 
 The result will be saved to a ```result.pkl``` file.
 
@@ -54,7 +53,7 @@ To visuaize the result of affordance detection and pose estimation, execute the 
 
                 python3 visualize.py --result_file <your result pickle file>
 
-Example of visualization:
+Example of training data visualization:
 
 <img src="./assets/visualization.png" width="500">
 
@@ -70,3 +69,7 @@ If you find our work useful for your research, please cite:
 }
 ```
 Thank you very much.
+
+## 7. Acknowledgement
+
+Our source code is built based on [3D AffordaceNet](https://github.com/Gorilla-Lab-SCUT/AffordanceNet). We express a huge thank to them.

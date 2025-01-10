@@ -29,9 +29,9 @@ class ThreeDAPDataset(Dataset):
             data = pkl.load(f)
         random.shuffle(data)
         
-        if self.mode == "train": data = data[:int(0.7*len(data))]
-        elif self.mode == "val": data = data[int(0.7*len(data)):int(0.8*len(data))]
-        elif self.mode == "test": data = data[int(0.8*len(data)):]
+        if self.mode == "train": data = data[:int(0.7 * len(data))]
+        elif self.mode == "val": data = data[int(0.7 * len(data)):int(0.8 * len(data))]
+        else: data = data[int(0.8 * len(data)):]
         
         for data_point in data:
             for affordance in data_point["affordance"]:
@@ -39,7 +39,7 @@ class ThreeDAPDataset(Dataset):
                     new_data_dict = {
                         "shape_id": data_point["shape_id"],
                         "semantic class": data_point["semantic class"],
-                        "coordinate": data_point["full_shape"]["coordinate"],   # point cloud coordinate
+                        "point cloud": data_point["full_shape"]["coordinate"],
                         "affordance": affordance,
                         "affordance label": data_point["full_shape"]["label"][affordance],
                         "rotation": R.from_matrix(pose[:3, :3]).as_quat(),
@@ -57,8 +57,14 @@ class ThreeDAPDataset(Dataset):
             shape id, semantic class, coordinate, affordance text, affordance label, rotation and translation
         """
         data_dict = self.all_data[index]
-        return data_dict['shape_id'], data_dict['semantic class'], data_dict['coordinate'], data_dict['affordance'], \
+        return data_dict['shape_id'], data_dict['semantic class'], data_dict['point cloud'], data_dict['affordance'], \
             data_dict['affordance label'], data_dict['rotation'], data_dict['translation']
         
     def __len__(self):
         return len(self.all_data)
+    
+
+if __name__ == "__main__":
+    random.seed(1)
+    dataset = ThreeDAPDataset(data_path="../full_shape_release.pkl", mode="train")
+    print(len(dataset))

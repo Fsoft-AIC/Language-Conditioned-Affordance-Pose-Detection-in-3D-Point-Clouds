@@ -5,15 +5,16 @@ from utils import *
 import argparse
 import pickle
 from tqdm import tqdm
+import random
 
 
-GUIDE_W = 0.5
-DEVICE=torch.device('cuda')
+GUIDE_W = 0.2
+DEVICE = torch.device('cuda')
 
 
 # Argument Parser
 def parse_args():
-    parser = argparse.ArgumentParser(description="Test a model")
+    parser = argparse.ArgumentParser(description="Detect affordance and poses")
     parser.add_argument("--config", help="test config file path")
     parser.add_argument("--checkpoint", help="path to checkpoint model")
     parser.add_argument("--test_data", help="path to test_data")
@@ -38,10 +39,15 @@ if __name__ == "__main__":
     else:
         raise ValueError("Must specify a checkpoint path!")
     
+    if cfg.get('seed') != None:
+        set_random_seed(cfg.seed)
+    
     with open(args.test_data, 'rb') as f:
         shape_data = pickle.load(f)
-    
-    print("Testing")
+    random.shuffle(shape_data)
+    shape_data = shape_data[int(0.8 * len(shape_data)):]
+
+    print("Detecting")
     model.eval()
     with torch.no_grad():
         for shape in tqdm(shape_data):

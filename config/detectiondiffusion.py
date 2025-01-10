@@ -1,7 +1,7 @@
 import os
 import torch
 from os.path import join as opj
-from utils import PN2_BNMomentum, PN2_Scheduler
+from utils import PN2_BNMomentum
 
 exp_name = 'detectiondiffusion'
 seed = 1

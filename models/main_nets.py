@@ -8,6 +8,7 @@ from .components import TextEncoder, PointNetPlusPlus, PoseNet
 text_encoder = TextEncoder(device=torch.device('cuda'))
 
 
+# Linear noise scheduler
 def linear_diffusion_schedule(betas, T):
     """_summary_
     Linear cheduling for sampling in training.
@@ -35,6 +36,7 @@ def linear_diffusion_schedule(betas, T):
     }
 
 
+# Main network for affordance detection and pose generation
 class DetectionDiffusion(nn.Module):
     def __init__(self, betas, n_T, device, background_text, drop_prob=0.1):
         """_summary_
@@ -128,7 +130,6 @@ class DetectionDiffusion(nn.Module):
             eps1 = eps[:n_sample]
             eps2 = eps[n_sample:]
             eps = (1 + guide_w) * eps1 - guide_w * eps2
-            # eps = torch.clamp(eps, -1.0, 1.0)
             
             g_i = g_i[:n_sample]
             g_i = self.oneover_sqrta[i] * (g_i - eps * self.mab_over_sqrtmab[i]) + self.sqrt_beta_t[i] * z

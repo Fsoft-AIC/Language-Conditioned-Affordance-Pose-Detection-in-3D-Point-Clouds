@@ -1,6 +1,9 @@
 import torch
 
 def weights_init(m):
+    """_summary_
+    Weights initialization
+    """
     classname = m.__class__.__name__
     if classname.find('Conv2d') != -1:
         torch.nn.init.xavier_normal_(m.weight.data)

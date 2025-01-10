@@ -4,9 +4,11 @@ import torch.nn.functional as F
 from time import time
 import numpy as np
 
+
 def timeit(tag, t):
     print("{}: {}s".format(tag, time() - t))
     return time()
+
 
 def pc_normalize(pc):
     l = pc.shape[0]
@@ -16,8 +18,9 @@ def pc_normalize(pc):
     pc = pc / m
     return pc
 
+
 def square_distance(src, dst):
-    """
+    """_summary_
     Calculate Euclid distance between each two points.
 
     src^T * dst = xn * xm + yn * ym + zn * zm;
@@ -41,8 +44,7 @@ def square_distance(src, dst):
 
 
 def index_points(points, idx):
-    """
-
+    """_summary_
     Input:
         points: input points data, [B, N, C]
         idx: sample index data, [B, S]
@@ -61,7 +63,7 @@ def index_points(points, idx):
 
 
 def farthest_point_sample(xyz, npoint):
-    """
+    """_summary_
     Input:
         xyz: pointcloud data, [B, N, 3]
         npoint: number of samples
@@ -85,7 +87,7 @@ def farthest_point_sample(xyz, npoint):
 
 
 def query_ball_point(radius, nsample, xyz, new_xyz):
-    """
+    """_summary_
     Input:
         radius: local region radius
         nsample: max sample number in local region
@@ -108,7 +110,7 @@ def query_ball_point(radius, nsample, xyz, new_xyz):
 
 
 def sample_and_group(npoint, radius, nsample, xyz, points, returnfps=False):
-    """
+    """_summary_
     Input:
         npoint:
         radius:
@@ -139,7 +141,7 @@ def sample_and_group(npoint, radius, nsample, xyz, points, returnfps=False):
 
 
 def sample_and_group_all(xyz, points):
-    """
+    """_summary_
     Input:
         xyz: input points position data, [B, N, 3]
         points: input points data, [B, N, D]
@@ -174,7 +176,7 @@ class PointNetSetAbstraction(nn.Module):
         self.group_all = group_all
 
     def forward(self, xyz, points):
-        """
+        """_summary_
         Input:
             xyz: input points position data, [B, C, N]
             points: input points data, [B, D, N]
@@ -222,7 +224,7 @@ class PointNetSetAbstractionMsg(nn.Module):
             self.bn_blocks.append(bns)
 
     def forward(self, xyz, points):
-        """
+        """_summary_
         Input:
             xyz: input points position data, [B, C, N]
             points: input points data, [B, D, N]
@@ -274,7 +276,7 @@ class PointNetFeaturePropagation(nn.Module):
             last_channel = out_channel
 
     def forward(self, xyz1, xyz2, points1, points2):
-        """
+        """_summary_
         Input:
             xyz1: input points position data, [B, C, N]
             xyz2: sampled input points position data, [B, C, S]
